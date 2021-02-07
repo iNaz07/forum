@@ -1,0 +1,66 @@
+{{ define "content" }}
+<p class="lead">
+  <a href="/thread/new">Start a thread</a> or join one below!
+</p>
+
+<form class="pull-left" action="/filter/created" method="post">
+  <input type="hidden" name="type" value="created">
+  <button class="btn btn-lg">My threads</button>
+</form>
+
+<form class="pull-left" action="/filter/liked" method="post">
+  <input type="hidden" name="type" value="liked">
+  <button class="btn btn-lg">My liked threads</button>
+</form><br><br><br>
+
+<form role="form" action="/filter/categories" method="post" class="panel panel-body">
+  <div class="lead">Choose the categories to filter by</div>
+  <div class="fa">
+    <input type="hidden" name="type" value="category">
+    <input type="checkbox" name="category1" value="C/C++"> C/C++<br>
+    <input type="checkbox" name="category2" value="Java"> Java<br>
+    <input type="checkbox" name="category3" value="PHP"> PHP<br>
+    <input type="checkbox" name="category4" value="Python"> Python<br>
+    <input type="checkbox" name="category5" value="JavaScript"> JavaScript<br><br>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-lg btn-primary pull-right" type="submit" onclick="send()">Filter by categories</button>
+  </div>
+</form>
+
+{{ range . }}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span class="lead"> <i class="fa fa-comment-o"></i> {{ .Topic }} </span>
+    </div>
+    <div class="panel-body">
+      <div class="fa pull-left">
+        Started by <a style="color: blue; font-size: 11pt;"> {{ .User.Name }} </a> | {{ .CreatedAtDate }} | {{ .NumReplies }} comments.
+      </div>
+      <form role="form" action="/thread/dislike" method="post">
+        <input type="hidden" name="uuid" value="{{ .Uuid }}">
+        <input type="hidden" name="url" value="/">
+        <div class="fa-lg pull-right"> 
+          <button class="fa fa-arrow-circle-down" type="submit" style="background:none; border-width:0px; color:rgb(125, 0, 0);">
+          </button>{{ .NumDislikesThread }} </div>
+      </form>
+      <form role="form" action="/thread/like" method="POST">
+        <input type="hidden" name="uuid" value="{{ .Uuid }}">
+        <input type="hidden" name="url" value="/">
+        <div class="fa-lg pull-right">
+          <button class="fa fa-arrow-circle-up" type="submit" style="background:none; border-width:0px; color:rgb(55, 125, 0);">
+          </button>{{ .NumLikesThread }} </div>
+      </form><br>
+      <div class="fa pull-left">
+        Categories: {{ .Categories }}
+      </div>
+      <form role="form" action="">
+      <div class="fa pull-right" style="font-size: 11pt;">
+        <a href="/thread/read?id={{.Uuid }}">Read more</a>
+      </div>
+      </form>
+    </div>
+  </div>
+{{ end }}
+
+{{ end }}

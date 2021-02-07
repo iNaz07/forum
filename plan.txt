@@ -1,0 +1,37 @@
+1. create category html
+2. create sql table for category
+3. write functions for category
+4. likes html
+5. likes database
+6. likes functions
+7. sorting
+
+
+
+
+
+2. Docker
+Does the project have Dockerfiles?
+
+student$ docker images
+student$ docker ps -a
+
+Is the docker containers running as above?
+Does the project present no unused object? 
+
+
+3. 
+Are all the pages working? (Absence of 404 page?)
+Does the project handle HTTP status 400 - Bad Requests?
+Does the project handle HTTP status 500 - Internal Server Errors?
+
+
+
+navbar for login and signin -------------------------------------
+
+
+
+1. UBRAT MUSOR
+2. ERROR HANDLERS
+3. DOCKER \
+4. 
